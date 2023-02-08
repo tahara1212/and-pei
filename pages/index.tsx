@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { client } from '../libs/client';
 import { Article } from '../types/article';
 
@@ -15,11 +15,11 @@ export default function Home({ articles }: HomeProps) {
       <div className="container mx-auto p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
         {articles.map(article => (
           <div className="rounded overflow-hidden shadow-lg" key={article.id}>
-            <img
+            {/* <img
               className="w-full"
               src={article.eye_catch.url}
               alt="Sunset in the mountains"
-            />
+            /> */}
             <div className="px-6 py-4">{article.title}</div>
             <div className="px-6 pt-4 pb-2">
               {article.tag && (
@@ -35,16 +35,14 @@ export default function Home({ articles }: HomeProps) {
   );
 };
 
-
-export const getServerSideProps = async () => {
-  console.log("a")
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  console.log(client);
   const data = await client.get({
-    endpoint: 'articles',
-    queries: { limit: 20, offset: 0 },
+    endpoint: 'blogs',
   });
-   return {
-     props: {
-       articles: data.contents,
-     },
-   };
-}
+  return {
+    props: {
+      articles: data.contents,
+    },
+  };
+};
