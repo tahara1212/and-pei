@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
+import { Layout } from '../components/Layout';
 import { client } from '../libs/client';
 import { Article } from '../types/article';
 
@@ -8,11 +9,11 @@ type HomeProps = {
 
 export default function Home({ articles }: HomeProps) {
   return (
-    <>
-      <h1 className="container mx-auto px-10 pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+    <Layout>
+      <h1 className="mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
         記事一覧
       </h1>
-      <div className="container mx-auto p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+      <div className="container mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
         {articles.map(article => (
           <div className="rounded overflow-hidden shadow-lg" key={article.id}>
             {/* <img
@@ -31,7 +32,7 @@ export default function Home({ articles }: HomeProps) {
           </div>
         ))}
       </div>
-    </>
+    </Layout>
   );
 };
 
