@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next';
 import { Layout } from '../components/Layout';
 import { client } from '../libs/client';
 import { Article } from '../types/article';
@@ -8,20 +8,24 @@ type HomeProps = {
 };
 
 export default function Home({ articles }: HomeProps) {
-  console.log(articles)
+  console.log(articles);
   return (
     <Layout>
       <h1 className="mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
         記事一覧
       </h1>
-      <div className="container mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+      <div className="container mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10 ">
         {articles.map(article => (
-          <div className="rounded overflow-hidden shadow-lg" key={article.id}>
-            <img
-              className="w-full"
-              src={article.eyecatch.url}
-              alt="Sunset in the mountains"
-            />
+          <div
+            className="rounded group overflow-hidden shadow-lg cursor-pointer"
+            key={article.id}>
+            <div className="overflow-hidden">
+              <img
+                className="w-full group-hover:scale-110 group-hover:opacity-60 transition duration-300"
+                src={article.eyecatch.url}
+                alt="Sunset in the mountains"
+              />
+            </div>
             <div className="px-6 py-4">{article.title}</div>
             <div className="px-6 pt-4 pb-2">
               {article.category && (
@@ -35,7 +39,7 @@ export default function Home({ articles }: HomeProps) {
       </div>
     </Layout>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   console.log(client);
