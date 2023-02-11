@@ -5,11 +5,17 @@ export type Article = {
   publishedAt: string;
   revisedAt: string;
   title: string;
-  body: string;
-  eye_catch: {
+  eyecatch: {
     url: string;
     height: number;
     width: number;
   };
-  tag: string;
+  category: {
+    createdAt: string;
+    id: string;
+    name: string;
+    publishedAt: string;
+    revisedAt: string;
+    updatedAt: string;
+  };
 };
