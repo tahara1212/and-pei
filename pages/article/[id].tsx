@@ -23,7 +23,7 @@ export default function Article({ article }: Props) {
                 {article.title}
               </div>
             </div>
-            <div className="flex items-center justify-start mt-4 mb-4 border-b border-cyan-100">
+            <div className="flex items-center justify-start mt-4 mb-4 border-b border-subGray">
               <time
                 className="text-time text-xs"
                 dateTime={formatDate(article.createdAt)}>

@@ -9,8 +9,8 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      white: '#ffffff',
-      purple: '#3f3cbb',
+      mainGray: '#eee',
+      subGray: '#ddd',
       midnight: '#121063',
       category: '#eee',
       time: '#808080',
