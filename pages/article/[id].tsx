@@ -23,15 +23,15 @@ export default function Article({ article }: Props) {
                 {article.title}
               </div>
             </div>
-            <div className="flex items-center justify-start mt-4 mb-4 border-b border-subGray">
+            <div className="flex items-center justify-start pb-4 mt-4 mb-4 border-b border-subGray">
               <time
                 className="text-time text-xs"
                 dateTime={formatDate(article.createdAt)}>
                 {formatDate(article.createdAt)}
               </time>
               {article.category && (
-                <div className="px-2 py-1 text-xs bg-category">
-                  #{article.category.name}
+                <div className="px-2 py-1 ml-2 text-xs bg-category">
+                  {article.category.name}
                 </div>
               )}
             </div>
