@@ -11,12 +11,12 @@ export type Article = {
     height: number;
     width: number;
   };
-  category: {
+  category: Array<{
     createdAt: string;
     id: string;
     name: string;
     publishedAt: string;
     revisedAt: string;
     updatedAt: string;
-  };
+  }>;
 };

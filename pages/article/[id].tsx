@@ -29,11 +29,11 @@ export default function Article({ article }: Props) {
                 dateTime={formatDate(article.createdAt)}>
                 {formatDate(article.createdAt)}
               </time>
-              {article.category && (
+              {article.category.map(category => (
                 <div className="px-2 py-1 ml-2 text-xs bg-category">
-                  {article.category.name}
+                  {category.name}
                 </div>
-              )}
+              ))}
             </div>
 
             <div className="mt-2">
