@@ -30,7 +30,7 @@ export default function Home({ articles }: HomeProps) {
               </div>
               <div className="p-6">
                 <div className="">{article.title}</div>
-                <div className="px-6 py-6">
+                <div className="pt-6">
                   {article.category.map(category => (
                     // <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                     <span className="px-2 py-1 ml-2 text-xs bg-category">

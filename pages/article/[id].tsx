@@ -19,7 +19,7 @@ export default function Article({ article }: Props) {
               src={article.eyecatch.url}
             /> */}
             <div className="mt-2">
-              <div className="sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl font-bold gray">
+              <div className="sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl font-bold break-words whitespace-pre-wrap gray">
                 {article.title}
               </div>
             </div>
