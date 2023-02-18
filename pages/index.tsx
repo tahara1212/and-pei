@@ -12,6 +12,10 @@ type HomeProps = {
 export default function Home({ articles }: HomeProps) {
   const router = useRouter();
 
+  const onClickCard = (id: string) => {
+    router.push(`/article/${id}`);
+  }
+
   return (
     <Layout>
       {/* <h1 className="mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
@@ -21,7 +25,8 @@ export default function Home({ articles }: HomeProps) {
         {articles.map(article => (
           <div
             className="rounded group overflow-hidden shadow-lg cursor-pointer"
-            key={article.id}>
+            key={article.id}
+            onClick={() => onClickCard(article.id)}>
             <div className="overflow-hidden">
               <img
                 className="w-full group-hover:scale-110 group-hover:opacity-60 transition duration-300"
