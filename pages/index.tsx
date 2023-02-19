@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Layout } from '../components/Layout';
 import { client } from '../libs/client';
-import { Article } from '../types/article';
+import { Article } from '../types/common';
 import { formatDate } from '../utils/formatUtil';
 
 type HomeProps = {

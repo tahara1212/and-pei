@@ -20,3 +20,8 @@ export type Article = {
     updatedAt: string;
   }>;
 };
+
+export type ButtonText = {
+  buttonText: 'Back'
+  linkUrl: string
+}

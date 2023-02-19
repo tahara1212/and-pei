@@ -1,8 +1,9 @@
 import { GetServerSideProps } from 'next';
-import type { Article } from '../../types/article';
+import type { Article } from '../../types/common';
 import { client } from '../../libs/client';
 import { Layout } from '../../components/Layout';
 import { formatDate } from '../../utils/formatUtil';
+import { Button } from '../../components/Button';
 
 type Props = {
   article: Article;
@@ -37,12 +38,15 @@ export default function Article({ article }: Props) {
             </div>
 
             <div className="mt-2">
-              <div className="text-2xl text-gray-700 mt-4 rounded ">
+              <div className="text-2xl text-gray-700 mt-4 rounded">
                 {article.content}
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex justify-end mt-2">
+        <Button buttonText={'Back'} linkUrl={'/'} />
       </div>
     </Layout>
   );
