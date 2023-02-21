@@ -4,6 +4,7 @@ import { client } from '../../libs/client';
 import { Layout } from '../../components/Layout';
 import { formatDate } from '../../utils/formatUtil';
 import { Button } from '../../components/Button';
+import { CommonHead } from '../../components/Head';
 
 type Props = {
   article: Article;
@@ -12,6 +13,7 @@ type Props = {
 export default function Article({ article }: Props) {
   return (
     <Layout>
+      <CommonHead title={article.title} />
       <div className="mt-20 shadow-lg">
         <div className="px-10 py-6 mx-auto">
           <div className="max-w-6xl px-10 py-6 mx-auto">

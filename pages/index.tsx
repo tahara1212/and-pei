@@ -1,6 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { CommonHead } from '../components/Head';
 import { Layout } from '../components/Layout';
 import { client } from '../libs/client';
 import { Article } from '../types/common';
@@ -19,6 +20,7 @@ export default function Home({ articles }: HomeProps) {
 
   return (
     <Layout>
+      <CommonHead title='Pe.log' />
       {/* <h1 className="mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
         記事一覧
       </h1> */}

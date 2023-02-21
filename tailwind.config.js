@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        rafeg: ['Shippori Mincho', 'sans-serif'],
+        NotoSerifJP: ['Noto Serif JP', 'serif'],
       },
     },
   },
