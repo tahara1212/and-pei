@@ -1,9 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* @layer utilities {
-    .content {
-        @apply
+@layer base {
+    body {
+        @apply font-rafeg
     }
-} */
+    h2 {
+        @apply border-b border-lightgray font-bold text-2xl mt-10
+    }
+    .content p {
+        @apply text-base mt-4 leading-relaxed
+    }
+    .content pre {
+        @apply text-base text-white bg-code my-2
+    }
+    .content p code {
+        @apply bg-mist rounded-sm py-[2px] px-1
+    }
+}
+
+@layer utilities {
+    .content {
+        @apply tracking-widest
+    }
+}

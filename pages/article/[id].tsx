@@ -24,7 +24,7 @@ export default function Article({ article }: Props) {
                 {article.title}
               </div>
             </div>
-            <div className="flex items-center justify-start pb-4 mt-4 mb-4 border-b border-subGray">
+            <div className="flex items-center justify-start pb-4 mt-4 mb-4 border-b border-lightgray">
               <time
                 className="text-time text-xs"
                 dateTime={formatDate(article.createdAt)}>
@@ -37,7 +37,7 @@ export default function Article({ article }: Props) {
               ))}
             </div>
 
-            <div className="mt-2">
+            <div className="content mt-2">
               <div
                 dangerouslySetInnerHTML={{
                   __html: `${article.content}`,

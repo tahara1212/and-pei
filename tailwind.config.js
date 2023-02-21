@@ -9,16 +9,19 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      mainGray: '#eee',
-      subGray: '#ddd',
-      midnight: '#121063',
+      gray: '#2f4f4f',
+      lightgray: '#ddd',
+      mist: '#eee',
+      white: '#e3e3e3',
       category: '#eee',
       time: '#808080',
-      gray: '#808080',
-      'bubble-gum': '#ff77e9',
-      bermuda: '#78dcca',
+      code: '#364549',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        rafeg: ['Shippori Mincho', 'sans-serif'],
+      },
+    },
   },
   plugins: [require('@tailwindcss/line-clamp')],
 };
