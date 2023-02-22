@@ -1,10 +1,17 @@
 import { GetServerSideProps } from 'next';
+import { load } from 'cheerio';
+import hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
 import type { Article } from '../../types/common';
 import { client } from '../../libs/client';
 import { Layout } from '../../components/Layout';
 import { formatDate } from '../../utils/formatUtil';
 import { Button } from '../../components/Button';
 import { CommonHead } from '../../components/Head';
+
+import 'highlight.js/styles/atom-one-dark.css';
+
+hljs.registerLanguage('javascript', javascript);
 
 type Props = {
   article: Article;
@@ -64,6 +71,14 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     endpoint: 'blogs',
     contentId: idExceptArray,
   });
+
+  const $ = load(data.content); // data.contentはmicroCMSから返されるリッチエディタ部
+  $('pre code').each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass('hljs');
+  });
+  data.content = $.html();
 
   return {
     props: {
