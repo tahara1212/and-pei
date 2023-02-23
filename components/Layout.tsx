@@ -26,14 +26,37 @@ export const Layout = ({ children, articles, categoryList }: LayoutProps) => {
       <Header />
       <div className="container w-[860px] mx-auto my-20">{children}</div>
       <aside className="w-full bg-gray">
-        <div className="w-[860px] py-4 mx-auto">
-          <ul className="px-2 text-white leading-relaxed">
-            {categoryList.map(category => (
-              <li key={category.id}>
-                {`${category.name} (${findCategoryLength(category.name)})`}
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-center justify-around w-[860px] py-10 mx-auto">
+          <div className="leading-relaxed text-white">
+            <div className="pb-1 text-lg border-b">Category</div>
+            <ul className="p-2">
+              {categoryList.map(category => (
+                <li key={category.id}>
+                  {`${category.name} (${findCategoryLength(category.name)})`}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="leading-relaxed text-white">
+            <div className="pb-1 text-lg border-b">CreatedAt</div>
+            <ul className="p-2">
+              {categoryList.map(category => (
+                <li key={category.id}>
+                  {`${category.name} (${findCategoryLength(category.name)})`}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="leading-relaxed text-white">
+            <div className="pb-1 text-lg border-b">Link</div>
+            <ul className="p-2">
+              {categoryList.map(category => (
+                <li key={category.id}>
+                  {`${category.name} (${findCategoryLength(category.name)})`}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </aside>
       <Footer />
