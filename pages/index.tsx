@@ -4,23 +4,22 @@ import { useRouter } from 'next/router';
 import { CommonHead } from '../components/Head';
 import { Layout } from '../components/Layout';
 import { client } from '../libs/client';
-import { Article } from '../types/common';
+import { Article, Category } from '../types/common';
 import { formatDate } from '../utils/formatUtil';
 
 type HomeProps = {
   articles: Array<Article>;
-  category: any
+  categoryList: Array<Category>;
 };
 
-export default function Home({ articles, category }: HomeProps) {
+export default function Home({ articles, categoryList }: HomeProps) {
   const router = useRouter();
-  console.log(category);
   const onClickCard = (id: string) => {
     router.push(`/article/${id}`);
   };
 
   return (
-    <Layout>
+    <Layout articles={articles} categoryList={categoryList}>
       <CommonHead title="Pe.log" />
       {/* <h1 className="mx-auto pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
         記事一覧
@@ -54,13 +53,6 @@ export default function Home({ articles, category }: HomeProps) {
             </div>
           </div>
         ))}
-        <ul>
-          {/* {category.map((category) => (
-            <li key={category.id}>
-              <Link href={`/category/${category.id}`}>{category.name}</Link>
-            </li>
-          ))} */}
-        </ul>
       </div>
     </Layout>
   );
@@ -72,12 +64,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   });
   const categoryData = await client.get({ endpoint: 'categories' });
 
-  console.log(categoryData);
-
   return {
     props: {
       articles: data.contents,
-      category: categoryData.contents,
+      categoryList: categoryData.contents,
     },
   };
 };

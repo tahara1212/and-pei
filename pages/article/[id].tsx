@@ -1,8 +1,8 @@
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import { load } from 'cheerio';
 import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
-import type { Article } from '../../types/common';
+import type { Article, Category } from '../../types/common';
 import { client } from '../../libs/client';
 import { Layout } from '../../components/Layout';
 import { formatDate } from '../../utils/formatUtil';
@@ -15,11 +15,14 @@ hljs.registerLanguage('javascript', javascript);
 
 type Props = {
   article: Article;
+  articles: Array<Article>;
+  categoryList: Array<Category>;
 };
 
-export default function Article({ article }: Props) {
+export default function Article({ article, articles, categoryList }: Props) {
+  console.log(articles);
   return (
-    <Layout>
+    <Layout articles={articles} categoryList={categoryList}>
       <CommonHead title={article.title} />
       <div className="mt-20 shadow-lg">
         <div className="px-10 py-6 mx-auto">
@@ -76,22 +79,28 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
   const idExceptArray = id instanceof Array ? id[0] : id;
-  const data = await client.get({
+  const articles = await client.get({
+    endpoint: 'blogs',
+  });
+  const article = await client.get({
     endpoint: 'blogs',
     contentId: idExceptArray,
   });
+  const categoryData = await client.get({ endpoint: 'categories' });
 
-  const $ = load(data.content); // data.contentはmicroCMSから返されるリッチエディタ部
+  const $ = load(article.content);
   $('pre code').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text());
     $(elm).html(result.value);
     $(elm).addClass('hljs');
   });
-  data.content = $.html();
+  article.content = $.html();
 
   return {
     props: {
-      article: data,
+      article: article,
+      articles: articles.contents,
+      categoryList: categoryData.contents,
     },
   };
 };

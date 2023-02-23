@@ -21,6 +21,15 @@ export type Article = {
   }>;
 };
 
+export type Category = {
+  createdAt: string;
+  id: string;
+  name: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
+};
+
 export type ButtonText = {
   buttonText: 'Back'
   linkUrl: string
