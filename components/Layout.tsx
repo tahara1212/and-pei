@@ -1,3 +1,4 @@
+import { Aside } from "./Aside";
 import { Footer } from "./Footer";
 import Header from "./Header";
 
@@ -10,6 +11,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <>
       <Header />
       <div className="container w-[860px] mx-auto my-20">{children}</div>
+      <Aside />
       <Footer />
     </>
   );

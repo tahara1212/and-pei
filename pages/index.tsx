@@ -9,14 +9,15 @@ import { formatDate } from '../utils/formatUtil';
 
 type HomeProps = {
   articles: Array<Article>;
+  category: any
 };
 
-export default function Home({ articles }: HomeProps) {
+export default function Home({ articles, category }: HomeProps) {
   const router = useRouter();
-
+  console.log(category);
   const onClickCard = (id: string) => {
     router.push(`/article/${id}`);
-  }
+  };
 
   return (
     <Layout>
@@ -30,7 +31,7 @@ export default function Home({ articles }: HomeProps) {
             className="rounded group overflow-hidden shadow-lg cursor-pointer"
             key={article.id}
             onClick={() => onClickCard(article.id)}>
-            <div className="flex justify-center items-center overflow-hidden h-48">
+            <div className="flex justify-center items-center overflow-hidden h-52">
               <img
                 className="w-full object-center group-hover:scale-110 group-hover:opacity-60 transition duration-300"
                 src={article.eyecatch.url}
@@ -53,19 +54,30 @@ export default function Home({ articles }: HomeProps) {
             </div>
           </div>
         ))}
+        <ul>
+          {/* {category.map((category) => (
+            <li key={category.id}>
+              <Link href={`/category/${category.id}`}>{category.name}</Link>
+            </li>
+          ))} */}
+        </ul>
       </div>
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  console.log(client);
   const data = await client.get({
     endpoint: 'blogs',
   });
+  const categoryData = await client.get({ endpoint: 'categories' });
+
+  console.log(categoryData);
+
   return {
     props: {
       articles: data.contents,
+      category: categoryData.contents,
     },
   };
 };

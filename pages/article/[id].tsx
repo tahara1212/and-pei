@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import { load } from 'cheerio';
 import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -64,8 +64,17 @@ export default function Article({ article }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const id = ctx.params?.id;
+export const getStaticPaths = async () => {
+  const data = await client.get({
+    endpoint: 'blogs',
+    queries: { offset: 0, limit: 100 },
+  });
+  const paths = data.contents.map(content => `/article/${content.id}`);
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context.params?.id;
   const idExceptArray = id instanceof Array ? id[0] : id;
   const data = await client.get({
     endpoint: 'blogs',
