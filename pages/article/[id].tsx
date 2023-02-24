@@ -26,10 +26,6 @@ export default function Article({ article, articles, categoryList }: Props) {
       <div className="mt-20 shadow-lg">
         <div className="px-10 py-6 mx-auto">
           <div className="max-w-6xl px-10 py-6 mx-auto">
-            {/* <img
-              className="object-cover w-full shadow-sm h-full"
-              src={article.eyecatch.url}
-            /> */}
             <div className="mt-2">
               <div className="sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl font-bold break-words whitespace-pre-wrap gray">
                 {article.title}
