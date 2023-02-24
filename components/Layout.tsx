@@ -25,10 +25,10 @@ export const Layout = ({ children, articles, categoryList }: LayoutProps) => {
     <>
       <Header />
       <div className="container w-[860px] mx-auto my-20">{children}</div>
-      <aside className="w-full bg-gray">
-        <div className="flex items-center justify-around w-[860px] py-10 mx-auto">
-          <div className="leading-relaxed text-white">
-            <div className="pb-1 text-lg border-b">Category</div>
+      <aside className="w-full border-t border-t-mist">
+        <div className="flex items-center justify-between w-[860px] py-10 mx-auto">
+          <div className="leading-relaxed text-gray">
+            <div className="pb-1 text-lg border-b">Categories</div>
             <ul className="p-2">
               {categoryList.map(category => (
                 <li key={category.id}>
@@ -37,8 +37,8 @@ export const Layout = ({ children, articles, categoryList }: LayoutProps) => {
               ))}
             </ul>
           </div>
-          <div className="leading-relaxed text-white">
-            <div className="pb-1 text-lg border-b">CreatedAt</div>
+          <div className="leading-relaxed text-gray">
+            <div className="pb-1 text-lg border-b">Archives</div>
             <ul className="p-2">
               {categoryList.map(category => (
                 <li key={category.id}>
@@ -47,7 +47,7 @@ export const Layout = ({ children, articles, categoryList }: LayoutProps) => {
               ))}
             </ul>
           </div>
-          <div className="leading-relaxed text-white">
+          <div className="leading-relaxed text-gray">
             <div className="pb-1 text-lg border-b">Link</div>
             <ul className="p-2">
               {categoryList.map(category => (
