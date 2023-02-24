@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Article, Category } from '../types/common';
 import { Footer } from './Footer';
 import Header from './Header';
@@ -31,8 +32,10 @@ export const Layout = ({ children, articles, categoryList }: LayoutProps) => {
             <div className="pb-1 text-lg border-b">Categories</div>
             <ul className="p-2">
               {categoryList.map(category => (
-                <li key={category.id}>
-                  {`${category.name} (${findCategoryLength(category.name)})`}
+                <li key={category.id} className="hover:opacity-60 transition">
+                  <Link href={`/category/${category.id}`}>
+                    {`${category.name} (${findCategoryLength(category.name)})`}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -52,7 +55,9 @@ export const Layout = ({ children, articles, categoryList }: LayoutProps) => {
             <ul className="p-2">
               {categoryList.map(category => (
                 <li key={category.id}>
-                  {`${category.name} (${findCategoryLength(category.name)})`}
+                  <Link href={`/category/${category.id}`}>
+                    {`${category.name} (${findCategoryLength(category.name)})`}
+                  </Link>
                 </li>
               ))}
             </ul>

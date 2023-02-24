@@ -20,7 +20,6 @@ type Props = {
 };
 
 export default function Article({ article, articles, categoryList }: Props) {
-  console.log(articles);
   return (
     <Layout articles={articles} categoryList={categoryList}>
       <CommonHead title={article.title} />
@@ -72,7 +71,7 @@ export const getStaticPaths = async () => {
     endpoint: 'blogs',
     queries: { offset: 0, limit: 100 },
   });
-  const paths = data.contents.map(content => `/article/${content.id}`);
+  const paths = data.contents.map((content: Article) => `/article/${content.id}`);
   return { paths, fallback: false };
 };
 
