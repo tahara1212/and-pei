@@ -6,19 +6,25 @@ import { client } from '../../libs/client';
 import { Article, Category } from '../../types/common';
 
 type Props = {
-  categorySelectArticles: Array<Article>;
+  selectCategoryArticles: Array<Article>;
   articles: Array<Article>;
   categoryList: Array<Category>;
+  selectCategoryName: string;
 };
 
-export default function CategoryId({ categorySelectArticles, articles, categoryList }: Props) {
-  if (categorySelectArticles.length === 0) {
+export default function CategoryId({
+  selectCategoryArticles,
+  articles,
+  categoryList,
+  selectCategoryName,
+}: Props) {
+  if (selectCategoryArticles.length === 0) {
     return <div>ブログコンテンツがありません</div>;
   }
   return (
     <Layout articles={articles} categoryList={categoryList}>
-      <CommonHead title="Pe.log2" />
-      <ArticleList articles={categorySelectArticles} />
+      <CommonHead title={`Pe.log / ${selectCategoryName}`} />
+      <ArticleList articles={selectCategoryArticles} />
     </Layout>
   );
 }
@@ -37,17 +43,22 @@ export const getStaticProps: GetStaticProps = async context => {
   const articles = await client.get({
     endpoint: 'blogs',
   });
-  const categorySelectArticles = await client.get({
+  const selectCategoryArticles = await client.get({
     endpoint: 'blogs',
     queries: { filters: `category[contains]${id}` },
   });
   const categoryData = await client.get({ endpoint: 'categories' });
+  const selectCategoryName = await client.get({
+    endpoint: 'categories',
+    queries: { limit: 1, filters: `id[equals]${id}` },
+  });
 
   return {
     props: {
-      categorySelectArticles: categorySelectArticles.contents,
+      selectCategoryArticles: selectCategoryArticles.contents,
       articles: articles.contents,
       categoryList: categoryData.contents,
+      selectCategoryName: selectCategoryName.contents[0].name,
     },
   };
 };
