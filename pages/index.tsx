@@ -12,7 +12,7 @@ type HomeProps = {
 
 export default function Home({ articles, categoryList }: HomeProps) {
   return (
-    <Layout articles={articles} categoryList={categoryList}>
+    <Layout articles={articles} categoryList={categoryList} title={'記事一覧'}>
       <CommonHead title="Pe.log" />
       <ArticleList articles={articles} />
     </Layout>

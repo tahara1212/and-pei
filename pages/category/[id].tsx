@@ -22,7 +22,7 @@ export default function CategoryId({
     return <div>ブログコンテンツがありません</div>;
   }
   return (
-    <Layout articles={articles} categoryList={categoryList}>
+    <Layout articles={articles} categoryList={categoryList} title={selectCategoryName}>
       <CommonHead title={`Pe.log / ${selectCategoryName}`} />
       <ArticleList articles={selectCategoryArticles} />
     </Layout>
