@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Article, Category } from '../types/common';
+import { Article, Category, PublishedAt } from '../types/common';
+import { formatDateForArchives } from '../utils/formatUtil';
+import { groupBy } from '../utils/groupByUtil';
 import { Footer } from './Footer';
 import Header from './Header';
 
@@ -7,10 +9,11 @@ type LayoutProps = {
   children: React.ReactNode;
   articles: Array<Article>;
   categoryList: Array<Category>;
-  title?: string
+  publishedAt: Array<PublishedAt>;
+  title?: string;
 };
 
-export const Layout = ({ children, articles, categoryList, title }: LayoutProps) => {
+export const Layout = ({ children, articles, categoryList, publishedAt, title }: LayoutProps) => {
   const findCategoryLength = (categoryName: string) => {
     const length = articles.reduce((prev, current) => {
       const isCategoryMatched = current.category.some(
@@ -31,7 +34,7 @@ export const Layout = ({ children, articles, categoryList, title }: LayoutProps)
         {children}
       </div>
       <aside className="w-full border-t border-t-mist">
-        <div className="flex items-center justify-between w-[860px] py-10 mx-auto">
+        <div className="flex items-top justify-between w-[860px] py-10 mx-auto">
           <div className="leading-relaxed text-gray">
             <div className="pb-1 text-lg border-b">Categories</div>
             <ul className="p-2">
@@ -47,9 +50,13 @@ export const Layout = ({ children, articles, categoryList, title }: LayoutProps)
           <div className="leading-relaxed text-gray">
             <div className="pb-1 text-lg border-b">Archives</div>
             <ul className="p-2">
-              {categoryList.map(category => (
-                <li key={category.id}>
-                  {`${category.name} (${findCategoryLength(category.name)})`}
+              {Object.keys(groupBy(publishedAt)).map(month => (
+                <li key={month} className="hover:opacity-60 transition">
+                  <Link href={`/archive/${month}`}>
+                    {`${formatDateForArchives(month)} (${
+                      groupBy(publishedAt)[month].length
+                    })`}
+                  </Link>
                 </li>
               ))}
             </ul>

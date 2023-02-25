@@ -30,6 +30,10 @@ export type Category = {
   updatedAt: string;
 };
 
+export type PublishedAt = {
+  publishedAt: string
+};
+
 export type ButtonText = {
   buttonText: 'Back'
   linkUrl: string

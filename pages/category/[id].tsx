@@ -3,13 +3,14 @@ import { ArticleList } from '../../components/ArticleList';
 import { CommonHead } from '../../components/Head';
 import { Layout } from '../../components/Layout';
 import { client } from '../../libs/client';
-import { Article, Category } from '../../types/common';
+import { Article, Category, PublishedAt } from '../../types/common';
 
 type Props = {
   selectCategoryArticles: Array<Article>;
   articles: Array<Article>;
   categoryList: Array<Category>;
   selectCategoryName: string;
+  publishedAt: Array<PublishedAt>;
 };
 
 export default function CategoryId({
@@ -17,19 +18,23 @@ export default function CategoryId({
   articles,
   categoryList,
   selectCategoryName,
+  publishedAt,
 }: Props) {
   if (selectCategoryArticles.length === 0) {
     return <div>ブログコンテンツがありません</div>;
   }
   return (
-    <Layout articles={articles} categoryList={categoryList} title={selectCategoryName}>
+    <Layout
+      articles={articles}
+      categoryList={categoryList}
+      publishedAt={publishedAt}
+      title={selectCategoryName}>
       <CommonHead title={`Pe.log / ${selectCategoryName}`} />
       <ArticleList articles={selectCategoryArticles} />
     </Layout>
   );
 }
 
-// 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: 'categories' });
 
@@ -37,7 +42,6 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-// データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps: GetStaticProps = async context => {
   const id = context.params?.id;
   const articles = await client.get({
@@ -52,6 +56,10 @@ export const getStaticProps: GetStaticProps = async context => {
     endpoint: 'categories',
     queries: { limit: 1, filters: `id[equals]${id}` },
   });
+  const publishedAt = await client.get({
+    endpoint: 'blogs',
+    queries: { fields: 'publishedAt' },
+  });
 
   return {
     props: {
@@ -59,6 +67,7 @@ export const getStaticProps: GetStaticProps = async context => {
       articles: articles.contents,
       categoryList: categoryData.contents,
       selectCategoryName: selectCategoryName.contents[0].name,
+      publishedAt: publishedAt.contents,
     },
   };
 };

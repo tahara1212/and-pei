@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { load } from 'cheerio';
 import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
-import type { Article, Category } from '../../types/common';
+import type { Article, Category, PublishedAt } from '../../types/common';
 import { client } from '../../libs/client';
 import { Layout } from '../../components/Layout';
 import { formatDate } from '../../utils/formatUtil';
@@ -17,11 +17,15 @@ type Props = {
   article: Article;
   articles: Array<Article>;
   categoryList: Array<Category>;
+  publishedAt: Array<PublishedAt>
 };
 
-export default function Article({ article, articles, categoryList }: Props) {
+export default function Article({ article, articles, categoryList, publishedAt }: Props) {
   return (
-    <Layout articles={articles} categoryList={categoryList}>
+    <Layout
+      articles={articles}
+      categoryList={categoryList}
+      publishedAt={publishedAt}>
       <CommonHead title={article.title} />
       <div className="mt-20 shadow-lg">
         <div className="px-10 py-6 mx-auto">
@@ -82,6 +86,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     contentId: idExceptArray,
   });
   const categoryData = await client.get({ endpoint: 'categories' });
+  const publishedAt = await client.get({
+    endpoint: 'blogs',
+    queries: { fields: 'publishedAt'},
+  });
 
   const $ = load(article.content);
   $('pre code').each((_, elm) => {
@@ -96,6 +104,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       article: article,
       articles: articles.contents,
       categoryList: categoryData.contents,
+      publishedAt: publishedAt.contents
     },
   };
 };
