@@ -1,9 +1,18 @@
+import { PublishedAt } from '../types/common';
 import { formatDateForPaths } from './formatUtil';
 
-export const groupBy = function (contents) {
-  return contents.reduce(function (group, x) {
-    const yearMonthString = formatDateForPaths(x.publishedAt);
-    (group[yearMonthString] = group[yearMonthString] || []).push(x);
+type GroupContents = {
+  [key: string]: Array<string>
+}
+
+export const groupByCreatedAt = (contents: Array<PublishedAt>) => {
+  return contents.reduce((group: GroupContents, current) => {
+    const createdAt = formatDateForPaths(current.publishedAt);
+    if (group[createdAt]) {
+      group[createdAt].push(createdAt);
+    } else {
+      group[createdAt] = [createdAt];
+    }
     return group;
   }, {});
 };

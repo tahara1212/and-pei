@@ -4,7 +4,6 @@ import { CommonHead } from '../components/Head';
 import { Layout } from '../components/Layout';
 import { client } from '../libs/client';
 import { Article, Category, PublishedAt } from '../types/common';
-import { groupBy } from '../utils/groupByUtil';
 
 type HomeProps = {
   articles: Array<Article>;
@@ -13,7 +12,6 @@ type HomeProps = {
 };
 
 export default function Home({ articles, categoryList, publishedAt }: HomeProps) {
-  console.log(groupBy(publishedAt));
   return (
     <Layout
       articles={articles}
@@ -33,7 +31,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const categoryData = await client.get({ endpoint: 'categories' });
     const publishedAt = await client.get({
       endpoint: 'blogs',
-      queries: { fields: ['id', 'publishedAt'] },
+      queries: { fields: 'publishedAt' },
     });
 
   return {

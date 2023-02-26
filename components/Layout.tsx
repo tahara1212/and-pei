@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Article, Category, PublishedAt } from '../types/common';
 import { formatDateForArchives } from '../utils/formatUtil';
-import { groupBy } from '../utils/groupByUtil';
+import { groupByCreatedAt } from '../utils/groupByUtil';
 import { Footer } from './Footer';
 import Header from './Header';
 
@@ -14,6 +14,7 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children, articles, categoryList, publishedAt, title }: LayoutProps) => {
+  console.log(groupByCreatedAt(publishedAt));
   const findCategoryLength = (categoryName: string) => {
     const length = articles.reduce((prev, current) => {
       const isCategoryMatched = current.category.some(
@@ -50,11 +51,11 @@ export const Layout = ({ children, articles, categoryList, publishedAt, title }:
           <div className="leading-relaxed text-gray">
             <div className="pb-1 text-lg border-b">Archives</div>
             <ul className="p-2">
-              {Object.keys(groupBy(publishedAt)).map(month => (
+              {Object.keys(groupByCreatedAt(publishedAt)).map(month => (
                 <li key={month} className="hover:opacity-60 transition">
                   <Link href={`/archive/${month}`}>
                     {`${formatDateForArchives(month)} (${
-                      groupBy(publishedAt)[month].length
+                      groupByCreatedAt(publishedAt)[month].length
                     })`}
                   </Link>
                 </li>

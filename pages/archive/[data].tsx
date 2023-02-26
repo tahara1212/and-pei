@@ -4,7 +4,7 @@ import { CommonHead } from '../../components/Head';
 import { Layout } from '../../components/Layout';
 import { client } from '../../libs/client';
 import { Article, Category, PublishedAt } from '../../types/common';
-import { groupBy } from '../../utils/groupByUtil';
+import { groupByCreatedAt } from '../../utils/groupByUtil';
 
 type Props = {
   selectArchiveArticles: Array<Article>;
@@ -35,10 +35,9 @@ export default function Archive({
 
 export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: 'blogs' });
+  const createdAt = groupByCreatedAt(data.contents);
 
-  const monthlyIndex = groupBy(data.contents);
-
-  const paths = Object.keys(monthlyIndex).map(index => `/archive/${index}`);
+  const paths = Object.keys(createdAt).map(index => `/archive/${index}`);
   return { paths, fallback: false };
 };
 
