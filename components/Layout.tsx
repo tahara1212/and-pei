@@ -13,8 +13,13 @@ type LayoutProps = {
   title?: string;
 };
 
-export const Layout = ({ children, articles, categoryList, publishedAt, title }: LayoutProps) => {
-  console.log(groupByCreatedAt(publishedAt));
+export const Layout = ({
+  children,
+  articles,
+  categoryList,
+  publishedAt,
+  title,
+}: LayoutProps) => {
   const findCategoryLength = (categoryName: string) => {
     const length = articles.reduce((prev, current) => {
       const isCategoryMatched = current.category.some(
@@ -65,13 +70,30 @@ export const Layout = ({ children, articles, categoryList, publishedAt, title }:
           <div className="leading-relaxed text-gray">
             <div className="pb-1 text-lg border-b">Link</div>
             <ul className="p-2">
-              {categoryList.map(category => (
-                <li key={category.id}>
-                  <Link href={`/category/${category.id}`}>
-                    {`${category.name} (${findCategoryLength(category.name)})`}
-                  </Link>
-                </li>
-              ))}
+              <li className="hover:opacity-60 transition">
+                <a
+                  href="https://twitter.com/Talk10997764"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Twitter
+                </a>
+              </li>
+              <li className="hover:opacity-60 transition">
+                <a
+                  href="https://qiita.com/st_12"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Qiita
+                </a>
+              </li>
+              <li className="hover:opacity-60 transition">
+                <a
+                  href="https://github.com/tahara1212"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  GitHub
+                </a>
+              </li>
             </ul>
           </div>
         </div>
