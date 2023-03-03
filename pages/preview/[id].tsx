@@ -24,49 +24,25 @@ export const getStaticPaths = async () => {
   const paths = data.contents.map(
     (content: Article) => `/preview/${content.id}`,
   );
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
-/* pages/post/[slug].tsx */
-export const getStaticProps: GetStaticProps = async context => {
-  const { params, previewData } = context;
-  if (!params?.slug) {
-    throw new Error('Error: ID not found');
-  }
-
-  /* draftKeyの存在チェック関数 */
-  type Draft = {
-    draftKey: string;
-  };
-
-  const isDraft = (arg: any): arg is Draft => {
-    if (!arg?.draftKey) {
-      return false;
-    }
-    return typeof arg.draftKey === 'string';
-  };
-
-  const slug = String(params.slug);
-  /* requestのクエリパラメータを生成*/
-  const draftKey = isDraft(previewData)
-    ? { draftKey: previewData.draftKey }
-    : {};
-
-  /* draftKeyを付与してリクエストを投げる */
-  try {
-    const data = await client.getListDetail<Article>({
-      endpoint: 'blogs',
-      contentId: slug,
-      queries: draftKey,
-    });
-    return {
-      props: {
-        post: data,
-        ...draftKey,
+export const getStaticProps: any = async (context: any) => {
+  const slug = context.params?.slug;
+  const draftKey = context.previewData?.draftKey;
+  const content = await fetch(
+    `https://xxxxxx.microcms.io/api/v1/blog/${slug}${
+      draftKey !== undefined ? `?draftKey=${draftKey}` : ''
+    }`,
+    {
+      headers: {
+        'jSnYp1fzPPGiKP2ZBa8Pv2eKkKy5jnWhpjut': process.env.apiKey || '',
       },
-    };
-  } catch (e) {
-    /* 失敗したら404 */
-    return { notFound: true };
-  }
+    },
+  ).then(res => res.json());
+  return {
+    props: {
+      content,
+    },
+  };
 };
