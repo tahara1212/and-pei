@@ -17,9 +17,14 @@
     .content h2 {
         @apply pb-2 mt-10 font-bold text-2xl border-b border-lightgray
     }
-
+    .content h3 {
+        @apply mt-8 font-bold text-xl
+    }
     .content p {
         @apply text-base mt-4 leading-relaxed
+    }
+    .content a {
+        @apply text-link underline
     }
 
     .content pre {

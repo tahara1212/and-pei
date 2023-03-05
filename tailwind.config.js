@@ -16,6 +16,7 @@ module.exports = {
       category: '#eee',
       time: '#808080',
       code: '#364549',
+      link: '#00bfff',
     },
     extend: {
       fontFamily: {
