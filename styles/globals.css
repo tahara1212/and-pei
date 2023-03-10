@@ -20,6 +20,9 @@
     .content h3 {
         @apply mt-8 font-bold text-xl
     }
+    .content h4 {
+        @apply inline-block mt-4 font-bold text-base border-b border-lightgray
+    }
     .content p {
         @apply text-base mt-4 leading-relaxed
     }
