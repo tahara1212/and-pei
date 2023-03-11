@@ -12,19 +12,19 @@
 
 @layer utilities {
     .content {
-        @apply tracking-widest
+        @apply tracking-widest 
     }
     .content h2 {
-        @apply pb-2 mt-10 font-bold text-2xl border-b border-lightgray
+        @apply pb-2 mt-10 font-bold text-xl md:text-2xl border-b border-lightgray
     }
     .content h3 {
-        @apply mt-8 font-bold text-xl
+        @apply mt-8 font-bold text-lg md:text-xl
     }
     .content h4 {
         @apply inline-block mt-4 font-bold text-base border-b border-lightgray
     }
     .content p {
-        @apply text-base mt-4 leading-relaxed
+        @apply text-base md:text-base mt-4 leading-relaxed 
     }
     .content a {
         @apply text-link underline

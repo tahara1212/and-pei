@@ -35,14 +35,16 @@ export const Layout = ({
   return (
     <>
       <Header />
-      <div className="container w-[860px] mx-auto mt-10 mb-20">
-        <h1 className="text-lg mb-6">{title}</h1>
+      <div className="container max-w-[860px] px-4 md:px-0 mx-auto mt-10 mb-20">
+        {title && <h1 className="text-lg mb-6">{title}</h1>}
         {children}
       </div>
       <aside className="w-full border-t border-t-mist">
-        <div className="flex items-top justify-between w-[860px] py-10 mx-auto">
+        <div className="flex flex-col md:flex-row items-top justify-between gap-6 max-w-[860px] p-10 md:py-10 mx-auto text-center md:text-left">
           <div className="leading-relaxed text-gray">
-            <div className="pb-1 text-lg border-b">Categories</div>
+            <div className="inline-block md:block pb-1 text-xl border-b">
+              Categories
+            </div>
             <ul className="p-2">
               {categoryList.map(category => (
                 <li key={category.id} className="hover:opacity-60 transition">
@@ -54,7 +56,9 @@ export const Layout = ({
             </ul>
           </div>
           <div className="leading-relaxed text-gray">
-            <div className="pb-1 text-lg border-b">Archives</div>
+            <div className="inline-block md:block pb-1 text-xl border-b">
+              Archives
+            </div>
             <ul className="p-2">
               {Object.keys(groupByCreatedAt(publishedAt)).map(month => (
                 <li key={month} className="hover:opacity-60 transition">
@@ -68,7 +72,9 @@ export const Layout = ({
             </ul>
           </div>
           <div className="leading-relaxed text-gray">
-            <div className="pb-1 text-lg border-b">Link</div>
+            <div className="inline-block md:block pb-1 text-xl border-b">
+              Link
+            </div>
             <ul className="p-2">
               <li className="hover:opacity-60 transition">
                 <a
