@@ -28,7 +28,7 @@ export default function Article({ article, articles, categoryList, publishedAt }
       publishedAt={publishedAt}>
       <CommonHead title={article.title} />
       <div className="mt-1 md:mt-20 shadow-lg">
-        <div className="px-10 md:px-20 py-6 mx-auto">
+        <div className="px-4 md:px-20 py-6 mx-auto">
           <div className="max-w-6xl py-6 mx-auto">
             <div className="mt-2">
               <div className="text-2xl md:text-3xl font-bold break-words whitespace-pre-wrap gray">
