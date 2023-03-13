@@ -29,11 +29,12 @@
     .content a {
         @apply text-link underline
     }
-
     .content pre {
-        @apply text-base text-white bg-code my-2
+        @apply my-2 rounded-md
     }
-
+    .content pre code {
+        @apply text-base text-white rounded-md
+    }
     .content p code {
         @apply bg-mist rounded-sm py-[2px] px-1
     }
