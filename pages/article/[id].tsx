@@ -42,7 +42,9 @@ export default function Article({ article, articles, categoryList, publishedAt }
                 {formatDate(article.createdAt)}
               </time>
               {article.category.map(category => (
-                <div className="px-2 py-1 ml-2 text-xs bg-category">
+                <div
+                  key={category.id}
+                  className="px-2 py-1 ml-2 text-xs bg-category">
                   {category.name}
                 </div>
               ))}

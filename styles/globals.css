@@ -12,7 +12,7 @@
 
 @layer utilities {
     .content {
-        @apply tracking-widest 
+        @apply tracking-widest
     }
     .content h2 {
         @apply pb-2 mt-10 font-bold text-xl md:text-2xl border-b border-lightgray
@@ -36,6 +36,9 @@
         @apply text-base text-white rounded-md
     }
     .content p code {
-        @apply bg-mist rounded-sm py-[2px] px-1
+        @apply bg-mist rounded-md py-[1px] px-2 font-NotoSerifJP
+    }
+    .content img {
+        @apply mt-2
     }
 }
