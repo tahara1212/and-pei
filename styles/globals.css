@@ -36,7 +36,7 @@
         @apply text-base text-white rounded-md
     }
     .content p code {
-        @apply bg-mist rounded-md py-[1px] px-2 font-NotoSerifJP
+        @apply bg-mist rounded-md py-[1px] px-2 text-xs font-NotoSerifJP
     }
     .content img {
         @apply mt-2
