@@ -28,13 +28,13 @@ export const ArticleList = ({ articles }: ArticleListProps) => {
           </div>
           <div className="p-6">
             <div className="text-time text-xs">
-              {formatDate(article.createdAt)}
+              {formatDate(article.publishedAt)}
             </div>
             <div className="pt-2 line-clamp-2">{article.title}</div>
             <div className="pt-4">
               {article.category.map(category => (
                 // <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                <span className="px-2 py-1 ml-2 text-xs bg-category">
+                <span key={category.id} className="px-2 py-1 ml-2 text-xs bg-category">
                   {category.name}
                 </span>
               ))}

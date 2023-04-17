@@ -38,8 +38,8 @@ export default function Article({ article, articles, categoryList, publishedAt }
             <div className="flex items-center justify-start pb-4 mt-4 mb-4 border-b border-lightgray">
               <time
                 className="text-time text-xs"
-                dateTime={formatDate(article.createdAt)}>
-                {formatDate(article.createdAt)}
+                dateTime={formatDate(article.publishedAt)}>
+                {formatDate(article.publishedAt)}
               </time>
               {article.category.map(category => (
                 <div
