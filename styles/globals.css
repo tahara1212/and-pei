@@ -38,6 +38,12 @@
     .content p code {
         @apply bg-mist rounded-md py-[1px] px-2 text-xs font-NotoSerifJP
     }
+    .content ul {
+        @apply py-2 px-6
+    }
+    .content li {
+        @apply list-disc text-base
+    }
     .content img {
         @apply mt-2
     }
