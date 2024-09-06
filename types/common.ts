@@ -8,7 +8,7 @@ export type Article = {
   content: string;
   eyecatch: {
     url: string;
-    height: number;
+    height: number | null;
     width: number | null;
   };
   category: Array<{
