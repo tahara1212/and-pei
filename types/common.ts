@@ -7,7 +7,7 @@ export type Article = {
   title: string;
   content: string | null;
   eyecatch: {
-    url: string | null;
+    url: string;
     height: number | null;
     width: number | null;
   };
