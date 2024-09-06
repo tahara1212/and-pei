@@ -9,7 +9,7 @@ export type Article = {
   eyecatch: {
     url: string;
     height: number;
-    width: number;
+    width: number | null;
   };
   category: Array<{
     createdAt: string;
