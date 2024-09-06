@@ -4,7 +4,7 @@ export type Article = {
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
-  title: string;
+  title: string | null;
   content: string | null;
   eyecatch: {
     url: string | null;
